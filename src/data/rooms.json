@@ -2,16 +2,16 @@
     {
       "id": 1,
       "name": "Double room",
-      "quantity": 2
+      "numberOfPeople": 2
     },
     {
         "id": 2,
         "name": "Single room",
-        "quantity": 1
+        "numberOfPeople": 1
     },
     {
         "id": 3,
         "name": "Family room",
-        "quantity": 4
+        "numberOfPeople": 4
     }
 ] 

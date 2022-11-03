@@ -1,7 +1,19 @@
 import Table from 'react-bootstrap/Table';
+import JsonData from '../data/rooms.json';
 
 function BasicTable() {
-  return (
+  const DisplayData=JsonData.map(
+    (info)=>{
+        return(
+            <tr>
+                <td align='left'>{info.name}</td>
+                <td>{info.numberOfPeople}</td>
+                <td>Reserve</td>
+            </tr>
+        )
+    }
+)
+return (
     <Table striped bordered hover>
       <thead>
         <tr>
@@ -11,21 +23,7 @@ function BasicTable() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td align="left">Double room</td>
-          <td>2</td>
-          <td>Reserve</td>
-        </tr>
-        <tr>
-          <td align="left">Single room</td>
-          <td>1</td>
-          <td>Reserve</td>
-        </tr>
-        <tr>
-          <td align="left">Family room</td>
-          <td>4</td>
-          <td>Reserve</td>
-        </tr>
+        {DisplayData}
       </tbody>
     </Table>
   );
