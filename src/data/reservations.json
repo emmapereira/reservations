@@ -1,0 +1,17 @@
+[
+    {
+      "id": 1,
+      "name": "Double room",
+      "numberOfPeople": 2
+    },
+    {
+        "id": 2,
+        "name": "Single room",
+        "numberOfPeople": 1
+    },
+    {
+        "id": 3,
+        "name": "Family room",
+        "numberOfPeople": 4
+    }
+] 
