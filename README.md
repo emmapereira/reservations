@@ -6,6 +6,8 @@ The system assumes the number of people inserted by the user as input can be sma
 
 Since this app was implemented without a data base, data is handled via JSON files, which means that some of the functionalities are mocked only (such as writing a new reservation).
 
+![alt text](/public/app1.png)
+
 ## Available Scripts
 
 In the project directory, you can run:
