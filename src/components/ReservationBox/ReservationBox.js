@@ -6,13 +6,21 @@ function ReservationBox({room}) {
 
     const [isActive, setIsActive] = useState(false);
 
+    const [isActiveConfirmation, setIsActiveConfirmation] = useState(false);
+
     var possibleReservation = true;
       
     const handleClick = () => {
         //toggle
         setIsActive(current => !current);
         refreshPage();
-      };
+    };
+
+    const handleConfirmation = () => {
+        //toggle
+        setIsActiveConfirmation(current => !current);
+        refreshPage();
+    };
 
     function refreshPage() {
         window.location.reload(false);
@@ -52,34 +60,29 @@ function ReservationBox({room}) {
                 }
             } 
         }
-        /*
-        const checkRestrictions=Reservations.map(
-            (infoRes)=> {
-                var resDateFrom = new Date(infoRes.dateFrom)
-                resDateFrom = resDateFrom.toISOString().substring(0, 10)
-              
-                var resDateTo = new Date(infoRes.dateTo)
-                resDateTo = resDateTo.toISOString().substring(0, 10)
-        
-                //check that the number of people entered by the user is not bigger than the room's capacity
-                if (room.quantity < quantitySelected) possibleReservation = false;
-
-                //check, in case the room is in a reservation, if the dates selected are available
-                else if (infoRes.id === room.id) {
-                    if ((resDateFrom <= dateFromSelected && resDateTo >= dateToSelected) 
-                        || (resDateFrom >= dateFromSelected && resDateTo >= dateToSelected) 
-                        || (resDateFrom <= dateFromSelected && resDateTo <= dateToSelected)) {
-                            possibleReservation = false;
-                        }
-                } 
-            }
-        )*/
+        //notify the user that reservation was not possible through an alert for simplicity
         if (!possibleReservation) {
             alert("The room is not available on these dates, or the number of people is too big, please try changing the reservation details.");
             possibleReservation = true;
             return false;
         }
+        //here we would create a new json object and write into the file
+        //close the reservation pop up window and notify the user that the room has been reserved
         else {
+            /*
+            handleClick();
+            <div style={{
+                display: isActiveConfirmation ? 'none' : '',
+                }} id='confirmation'>
+                <div>
+                    <h1>Your reservation has been processed!</h1>
+                    <button onClick={handleConfirmation}>
+                        OK
+                    </button>
+                </div>
+            </div>*/
+            alert("Your reservation has been processed!");
+            handleClick();
             console.log('form submitted');
         }
         

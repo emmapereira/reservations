@@ -24,6 +24,11 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 5px;
     flex-direction: column;
     padding: 25px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
   }
 
   .titleCloseBtn {
