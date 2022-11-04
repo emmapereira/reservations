@@ -8,6 +8,19 @@ Since this app was implemented without a data base, data is handled via JSON fil
 
 ![alt text](/public/app1.png)
 
+
+Initial information displayed on the screen
+
+![alt text](/public/app2.png)
+
+
+Reservation box when the user clicks on "Reserve" of one of the rooms
+
+![alt text](/public/app3.png)
+
+
+Calendar input example
+
 ## Available Scripts
 
 In the project directory, you can run:
