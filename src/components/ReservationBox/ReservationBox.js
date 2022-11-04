@@ -2,26 +2,41 @@ import React,{useState} from 'react';
 import './ReservationBox.css';
 import Reservations from '../../data/reservations.json';
 
+var possibleReservation = true;
+
 function ReservationBox({room}) {
 
     const [isActive, setIsActive] = useState(false);
-
-    var possibleReservation = true;
       
+    //toggle to know when to show or close the form window
     const handleClick = () => {
-        //toggle
         setIsActive(current => !current);
         refreshPage();
     };
 
+    //reloads the window
     function refreshPage() {
         window.location.reload(false);
+    }
+
+    //checks all the date conditions to see if the reservation is possible
+    function checkDateConditions(infoRes, room, resDateFrom, resDateTo, dateFromSelected, dateToSelected) {
+        if (infoRes.reservedPeople === room.numberOfPeople) {
+            if ((resDateFrom <= dateFromSelected && resDateTo >= dateToSelected) 
+                || (resDateFrom >= dateFromSelected && resDateTo <= dateToSelected)
+                || (resDateFrom >= dateFromSelected && resDateTo >= dateToSelected && resDateFrom !== dateToSelected && resDateFrom < dateToSelected) 
+                || (resDateFrom <= dateFromSelected && resDateTo <= dateToSelected && resDateTo !== dateFromSelected && resDateTo > dateFromSelected)) {
+                    possibleReservation = false;
+            }
+        }
     }
 
     const handleSubmit = event => {
         possibleReservation = true;
         //prevent page refresh
         event.preventDefault();
+
+        //get all the user's input from the form
         var dateFromSelected = event.target.dateFrom.value;
         var dateToSelected = event.target.dateTo.value;
         var quantitySelected = event.target.quantity.value;
@@ -32,9 +47,11 @@ function ReservationBox({room}) {
             return false;
         }
 
+        //check with each reservation in our file to see if the new one is available
         for (let i = 0; i < Reservations.length; ++i) {
             var infoRes = Reservations[i]
 
+            //save the dates of the reservation we are checking in the right format so that we can compare them
             var resDateFrom = new Date(infoRes.dateFrom)
             resDateFrom = resDateFrom.toISOString().substring(0, 10)
               
@@ -45,36 +62,32 @@ function ReservationBox({room}) {
             if (room.numberOfPeople < quantitySelected) {
                 possibleReservation = false;
             }
-            
-            //check, in case the room is in a reservation, if the dates selected are available
-            if (infoRes.reservedPeople === room.numberOfPeople) {
-                if ((resDateFrom <= dateFromSelected && resDateTo >= dateToSelected) 
-                    || (resDateFrom >= dateFromSelected && resDateTo >= dateToSelected && resDateFrom !== dateToSelected && resDateFrom < dateToSelected) 
-                    || (resDateFrom <= dateFromSelected && resDateTo <= dateToSelected && resDateTo !== dateFromSelected && resDateTo > dateFromSelected)) {
-                        possibleReservation = false;
-                }
-            } 
+
+            //check all the dat conditions to see if the reservation si possible
+            checkDateConditions(infoRes, room, resDateFrom, resDateTo, dateFromSelected, dateToSelected);
         }
+
         //notify the user that reservation was not possible through an alert for simplicity
         if (!possibleReservation) {
             alert("The room is not available on these dates, or the number of people is too big, please try changing the reservation details.");
             return false;
         }
-        //here we would create a new json object and write into the file
+
+        //here we would create a new json object and write into the file, but this is not possible by just using react without a data base
         //close the reservation pop up window and notify the user that the room has been reserved
         else {
+            //this console log is only a mock, since i cannot write into the json file with the reservations
+            console.log('EMAIL SENT TO test@admin.com FOR CREATED Reservation WITH ID {4}');
             alert("Your reservation has been processed!");
             handleClick();
-            console.log('form submitted');
         }
-        
       };
 
     return (
         <div style={{
             display: isActive ? 'none' : '',
           }} id='popupbox'>
-            <form onSubmit={handleSubmit}>
+            <form id="form" onSubmit={handleSubmit}>
                 <fieldset>
                     <div className='titleCloseBtn'>
                         <button onClick={handleClick}>
@@ -101,14 +114,13 @@ function ReservationBox({room}) {
                         <input id="quantity" type="number" required />
                     </p>
 
-                    <p>
-                        <button className="submit" type="submit">Register store</button>
-                    </p>
+                    <div class="titleCloseBtn">
+                        <button className="submit" type="submit">Reserve</button>
+                    </div>
 
                 </fieldset>
             </form>
         </div>
-        
     )
 }
 
