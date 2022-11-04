@@ -1,9 +1,6 @@
 import Table from 'react-bootstrap/Table';
 import RoomData from '../../data/rooms.json';
 import './RoomsTable.css';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import ReservationBox from '../ReservationBox/ReservationBox';
 
 /*
  

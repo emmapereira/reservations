@@ -1,17 +1,23 @@
 [
     {
       "id": 1,
-      "name": "Double room",
-      "numberOfPeople": 2
+      "dateFrom": "2022-11-11",
+      "dateTo": "2022-11-12",
+      "reservedPeople": 2,
+      "ressourceId": 1
     },
     {
-        "id": 2,
-        "name": "Single room",
-        "numberOfPeople": 1
+      "id": 2,
+      "dateFrom": "2022-11-11",
+      "dateTo": "2022-11-12",
+      "reservedPeople": 1,
+      "ressourceId": 2
     },
     {
-        "id": 3,
-        "name": "Family room",
-        "numberOfPeople": 4
+      "id": 3,
+      "dateFrom": "2022-11-11",
+      "dateTo": "2022-11-12",
+      "reservedPeople": 4,
+      "ressourceId": 1
     }
 ] 
