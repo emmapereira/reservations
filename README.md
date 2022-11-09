@@ -1,6 +1,6 @@
 # About the app
 
-This app represents a simple reservation system. User's can see a list of the rooms in the hotel and choose to reserve one of them in their desired dates for a specific number of people. The system checks that all input is filled and that the room is actually available on those dates, before submitting their reservation. 
+This app represents a simple reservation system. Users can see a list of the rooms in the hotel and choose to reserve one of them in their desired dates for a specific number of people. The system checks that all input is filled and that the room is actually available on those dates, before submitting their reservation. 
 
 The system assumes the number of people inserted by the user as input can be smaller than the capacity of the room. 
 
